@@ -40,8 +40,10 @@ async def droplinkshort(url):
     "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
     }
     payload = ""
-    resp = requests.request("GET", URL, data=payload,  headers=headersList).json()
-    shortlink = resp["shortenedUrl"]
+    resp = requests.request("GET", URL, data=payload,  headers=headersList)
+    print(resp)
+    print(resp.text)
+    shortlink = resp.json()["shortenedUrl"]
     return shortlink
 
 
