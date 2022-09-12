@@ -71,25 +71,24 @@ async def next_page(bot, query):
         return
     settings = await get_settings(query.message.chat.id)
     shorturl = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
-    if settings['button']:
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=shorturl )
+    for file in files:
+        if settings['button']:
+            btn = [
+                [
+                    InlineKeyboardButton(
+                        text=f"[{get_size(file.file_size)}] {file.file_name}", url=shorturl )
+                ]
             ]
-        ]
-    else:
-        btn = [
-                InlineKeyboardButton(
-                    text=f"{file.file_name}",  url=shorturl
-                ),
-                InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
-                ),
-            ]
-            for file in files
-        ]
+        else:
+            btn = [
+                    InlineKeyboardButton(
+                        text=f"{file.file_name}",  url=shorturl
+                    ),
+                    InlineKeyboardButton(
+                        text=f"{get_size(file.file_size)}",
+                        callback_data=f'files_#{file.file_id}',
+                    ),
+                ]
 
     if 0 < offset <= 10:
         off_set = 0
