@@ -76,7 +76,7 @@ async def next_page(bot, query):
             [
                 InlineKeyboardButton(
                     text=f"[{get_size(file.file_size)}] {file.file_name}", url=shorturl )
-                ),
+                )
             ]
             for file in files
         ]
