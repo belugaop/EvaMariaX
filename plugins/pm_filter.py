@@ -86,10 +86,11 @@ async def next_page(bot, query):
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
-               ),
+                ),
             ]
-         
-    else:
+            for file in files
+        ]
+
     if 0 < offset <= 10:
         off_set = 0
     elif offset == 0:
