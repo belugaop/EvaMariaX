@@ -33,7 +33,7 @@ import requests
 import json
 DROPLINK_API = os.environ.get('DROPLINK_API', '3b04634f0d8ea6e6d008f311e871aba2a98afb9e')
 
-def droplinkshort(url):
+async def droplinkshort(url):
     URL = f'https://droplink.co/api?api={DROPLINK_API}&url={url}'
     resp = requests.get(URL).json()
     shortlink = resp["shortenedUrl"]
@@ -70,7 +70,7 @@ async def next_page(bot, query):
     if not files:
         return
     settings = await get_settings(query.message.chat.id)
-    shorturl = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
+    shorturl = await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
     for file in files:
         if settings['button']:
             btn = [
