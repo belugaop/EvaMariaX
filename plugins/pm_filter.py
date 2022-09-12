@@ -29,6 +29,17 @@ logger.setLevel(logging.ERROR)
 BUTTONS = {}
 SPELL_CHECK = {}
 
+import os
+import requests
+import json
+DROPLINK_API = os.environ.get('DROPLINK_API', '3b04634f0d8ea6e6d008f311e871aba2a98afb9e')
+
+def droplinkshort(url):
+    URL = f'https://droplink.co/api?api={DROPLINK_API}&url={url}'
+    resp = requests.get(URL).json()
+    shortlink = resp["shortenedUrl"]
+    return shortlink
+
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
 async def give_filter(client, message):
@@ -64,8 +75,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
+                text=f"[{get_size(file.file_size)}] {file.file_name}", url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}")                ),
             ]
             for file in files
         ]
@@ -74,10 +84,13 @@ async def next_page(bot, query):
             [
                 InlineKeyboardButton(
                     text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
-                ),
+                    url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}"),
+                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
                     callback_data=f'files_#{file.file_id}',
+                    url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}"),
+
                 ),
             ]
             for file in files
@@ -641,7 +654,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
                 ),
             ]
             for file in files
@@ -651,11 +664,11 @@ async def auto_filter(client, msg, spoll=False):
             [
                 InlineKeyboardButton(
                     text=f"{file.file_name}",
-                    callback_data=f'{pre}#{file.file_id}',
+                    url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'{pre}#{file.file_id}',
+                    url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
             ]
             for file in files
