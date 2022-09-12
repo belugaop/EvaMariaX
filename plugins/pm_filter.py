@@ -79,17 +79,15 @@ async def next_page(bot, query):
             ]
             for file in files
         ]
-    else:
+       else:
         btn = [
             [
                 InlineKeyboardButton(
-                text=f"[{get_size(file.file_size)}] {file.file_name}", url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}")                ),
-                 ),
+                    text=f"{file.file_name}", url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}")
+                ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
                     url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}"),
-
                 ),
             ]
             for file in files
