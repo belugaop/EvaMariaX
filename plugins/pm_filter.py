@@ -82,7 +82,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", url = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),'
+                    text=f"{file.file_name}", url = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
