@@ -35,9 +35,12 @@ DROPLINK_API = os.environ.get('DROPLINK_API', '3b04634f0d8ea6e6d008f311e871aba2a
 
 async def droplinkshort(url):
     URL = f'https://droplink.co/api?api={DROPLINK_API}&url={url}'
-    resp = requests.get(URL)
-    print(resp.text)
-    resp = resp.json()
+    headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)" 
+    }
+    payload = ""
+    resp = requests.request("GET", URL, data=payload,  headers=headersList).json()
     shortlink = resp["shortenedUrl"]
     return shortlink
 
