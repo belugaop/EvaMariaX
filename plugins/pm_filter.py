@@ -83,8 +83,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
-                    url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}"),
+                text=f"[{get_size(file.file_size)}] {file.file_name}", url=await droplinkshort(f"https://telegram.me/{temp.U_NAME}?start=files#{file.file_id}")                ),
                  ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
