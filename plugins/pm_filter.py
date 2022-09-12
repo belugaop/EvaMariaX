@@ -70,11 +70,12 @@ async def next_page(bot, query):
     if not files:
         return
     settings = await get_settings(query.message.chat.id)
+    shorturl = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"
     if settings['button']:
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{get_size(file.file_size)} {file.file_name}", url = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url=shorturl )
                 ),
             ]
             for file in files
@@ -83,7 +84,7 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", url = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
+                    text=f"{file.file_name}",  url=shorturl)
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
