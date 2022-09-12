@@ -34,23 +34,7 @@ import json
 DROPLINK_API = '3b04634f0d8ea6e6d008f311e871aba2a98afb9e'
 
 async def droplinkshort(url):
-    URL = f'https://droplink.co/api?api={DROPLINK_API}&url={url}'
-    headersList = {
- "authority": "droplink.co",
- "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
- "accept-language": "en-US,en;q=0.9",
- "cookie": "csrfToken=003b221e43215f30169725e3a1151ea3f545af7a9d9a16b48b33fc8a300030ba57b5deca3c13b51799ac52594b3020f1889efb285d132e1680e397f0cbae810d; AppSession=b82b8526ebdd0b6b319b08149afeb42d; ab=2",
- "dnt": "1",
- "sec-ch-ua-mobile": "?0",
- "sec-fetch-dest": "document",
- "sec-fetch-mode": "navigate",
- "sec-fetch-site": "none",
- "sec-fetch-user": "?1",
- "upgrade-insecure-requests": "1",
- "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36"
-    }
-    payload = ""
-    resp = requests.request("GET", URL, data=payload,  headers=headersList)
+    resp = requests.get(f"https://droplink.co/api?api={DROPLINK_API}&url={url}")
     print(resp.text)
     resp = resp.json()
     shortlink = resp["shortenedUrl"]
