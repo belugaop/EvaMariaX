@@ -82,7 +82,7 @@ async def next_page(bot, query):
     else:
         btn = [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}",  url=shorturl)
+                    text=f"{file.file_name}",  url=shorturl
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
