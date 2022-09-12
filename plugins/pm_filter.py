@@ -82,11 +82,11 @@ async def next_page(bot, query):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"{file.file_name}", callback_data=f'files#{file.file_id}'
+                    text=f"{file.file_name}", url= droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),'
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'files_#{file.file_id}',
+                    url= droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
             ]
             for file in files
@@ -639,7 +639,7 @@ async def auto_filter(client, msg, spoll=False):
                     return await advantage_spell_chok(msg)
                 else:
                     return
-        else:
+        e/lse:
             return
     else:
         settings = await get_settings(msg.message.chat.id)
@@ -650,7 +650,7 @@ async def auto_filter(client, msg, spoll=False):
         btn = [
             [
                 InlineKeyboardButton(
-                    text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
+                    text=f"[{get_size(file.file_size)}] {file.file_name}", url= droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),'
                 ),
             ]
             for file in files
@@ -660,11 +660,11 @@ async def auto_filter(client, msg, spoll=False):
             [
                 InlineKeyboardButton(
                     text=f"{file.file_name}",
-                    callback_data=f'{pre}#{file.file_id}',
+                    url= droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    callback_data=f'{pre}#{file.file_id}',
+                    url= droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}"),
                 ),
             ]
             for file in files
