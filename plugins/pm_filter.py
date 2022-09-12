@@ -71,7 +71,11 @@ async def next_page(bot, query):
         return
     settings = await get_settings(query.message.chat.id)
     for file in files:
-        shorturl = droplinkshort(f"https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}")
+
+        URL = f'https://droplink.co/api?api={DROPLINK_API}&url=https://telegram.me/{temp.U_NAME}?start={pre}_{file.file_id}'
+        resp = await requests.get(URL).json()
+        shorturl = resp["shortenedUrl"]
+
         if settings['button']:
             btn = [
                 [
