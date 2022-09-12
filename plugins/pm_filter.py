@@ -89,8 +89,8 @@ async def next_page(bot, query):
                     callback_data=f'files_#{file.file_id}',
                 ),
             ]
+            
             for file in files
-        ]
 
     if 0 < offset <= 10:
         off_set = 0
