@@ -32,9 +32,21 @@ SPELL_CHECK = {}
 import cloudscraper
 scrapper = cloudscraper.create_scraper()
 DROPLINK_API = '3b04634f0d8ea6e6d008f311e871aba2a98afb9e'
+headersList = {
+ "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+ "Accept-Language": "en-US,en;q=0.9",
+ "Cache-Control": "max-age=0",
+ "Cookie": "vDDoS-Js=4dfbedbf45f8f2b7bd3356893469906a; AppSession=314876fbf9215dc923e73e894643eef4; csrfToken=15e5fe30c7c8ccfa6f49a3100caeab428ee30806f3c8f3be82c0ebe98316e41042ff80fe62b3b755c2b099ca925e69104838014ff364976d600b88970b1d7eaa",
+ "DNT": "1",
+ "Proxy-Authorization": "Basic TjRoQUNESTFEMl8yU0hHc0dDOWVXVHJlYUtOeXRxb3BBLUQxMTdzaVdNaGVuUWh3ZU9Jb3VTNHFSa3NBaEFHMDZHNjFoOWFlMXlWd2VfNFRjVThWem1NbVlVb1VYS3hJVzctUUlGTnl4QTQ9OjE=",
+ "Proxy-Connection": "keep-alive",
+ "Referer": "http://droplink.co/api?api=3b04634f0d8ea6e6d008f311e871aba2a98afb9e&url=google.com&d=2",
+ "Upgrade-Insecure-Requests": "1",
+ "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" 
+}
 
 async def droplinkshort(url):
-    return scrapper.get(f"https://droplink.co/api?api={DROPLINK_API}&url={url}").json()["shortenedUrl"]
+    return scrapper.get(f"https://droplink.co/api?api={DROPLINK_API}&url={url}", headers=headersList).json()["shortenedUrl"]
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
