@@ -28,17 +28,13 @@ logger.setLevel(logging.ERROR)
 
 BUTTONS = {}
 SPELL_CHECK = {}
-import os
-import requests
-import json
+
+import cloudscraper
+scrapper = cloudscraper.create_scraper()
 DROPLINK_API = '3b04634f0d8ea6e6d008f311e871aba2a98afb9e'
 
 async def droplinkshort(url):
-    resp = requests.get(f"https://droplink.co/api?api={DROPLINK_API}&url={url}")
-    print(resp.text)
-    resp = resp.json()
-    shortlink = resp["shortenedUrl"]
-    return shortlink
+    return scrapper.get(f"https://droplink.co/api?api={DROPLINK_API}&url={url}").json()["shortenedUrl"]
 
 
 @Client.on_message(filters.group & filters.text & filters.incoming)
